@@ -3,7 +3,7 @@ import React from 'react';
 
 export const Navbar: React.FC = () => {
   return (
-    <nav className="px-4 fixed top-0 left-0 w-full flex justify-evenly items-center bg-primary text-white">
+    <nav className=" sticky px-4 top-0 left-0 w-full flex justify-evenly items-center bg-primary text-white z-50">
       <div className="flex-grow-0">
         <img src="/white-logo.png" alt="Logo" className="h-36" />
       </div>
