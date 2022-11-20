@@ -3,7 +3,7 @@ import type { NextPage } from 'next';
 import { Navbar } from '../components/navbar';
 import { WhiteLogo } from '../components';
 import { ServiceCard } from '../components/service-card';
-import { DesktopOutlined, MobileOutlined, CloudServerOutlined } from '@ant-design/icons';
+import { DesktopOutlined, MobileOutlined, CloudServerOutlined, GithubOutlined, LinkedinOutlined } from '@ant-design/icons';
 import { Button } from 'antd';
 
 const frontEndTools = ['Angular', 'React', 'Tailwind', 'SCSS', 'Motion'];
@@ -11,6 +11,10 @@ const mobileDevelopmentTools = ['React Native', 'Flutter'];
 const fullstackDevelopmentToold = ['Angular', 'React', 'NodeJS', 'AWS'];
 
 const Home: NextPage = () => {
+  const onSocialLinkClicked = (url: string) => {
+    window.open(url, '_blank');
+  };
+
   return (
     <div className="flex min-h-screen flex-col">
       <main>
@@ -64,10 +68,18 @@ const Home: NextPage = () => {
               Send message
             </Button>
           </div>
-          <div className="flex justify-center">
-            <div className="flex flex-col">
-              <WhiteLogo />
-              <p>Always trying to make a difference</p>
+          <div className="flex justify-center flex-col items-center">
+            <div className="relative">
+              <WhiteLogo width={350} height={250} />
+              <p className="text-base absolute top-3/4 left-1/2 -translate-x-1/2 w-full text-center text-white">Always trying to make the difference</p>
+            </div>
+            <div className="flex text-lg w-28 justify-around">
+              <a onClick={() => onSocialLinkClicked('https://github.com/JeremyGuillen')}>
+                <GithubOutlined className="text-[30px]" style={{ color: 'white' }} />
+              </a>
+              <a onClick={() => onSocialLinkClicked('https://www.linkedin.com/in/jeremy-guill%C3%A9n-dur%C3%A1n-14223b230/')}>
+                <LinkedinOutlined className="text-[30px]" style={{ color: 'white' }} />
+              </a>
             </div>
           </div>
         </section>
