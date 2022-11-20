@@ -58,9 +58,9 @@ const Home: NextPage = () => {
         {/* contact and footer section */}
         <section className="py-9 bg-primary relative">
           {/* contact div */}
-          <div className="w-3/4 max-w-[1029px] py-6 px-11 absolute top-0 left-1/2 -translate-x-1/2 space-x-2 -translate-y-1/2 text-white text-xl bg-secondary rounded-xl flex justify-around items-center">
-            <h5 className="text-white flex-1 text-bold m-0">Let&apos;s build something</h5>
-            <p className="flex-1 text-xl m-0 text-center">
+          <div className="w-3/4 max-w-[1029px] py-6 px-11 absolute top-0 left-1/2 -translate-x-1/2 space-x-2 -translate-y-1/2 text-white text-xl flex-col bg-secondary rounded-xl md:flex-row flex justify-around items-center flex-wrap">
+            <h5 className="text-white flex-1 text-bold m-7 md:m-0 text-center md:text-left">Let&apos;s build something</h5>
+            <p className="flex-1 text-xl m-7 md:m-0 text-center">
               Wanna work together? <br /> We should chat
             </p>
             {/* todo fix this button color */}
@@ -68,7 +68,7 @@ const Home: NextPage = () => {
               Send message
             </Button>
           </div>
-          <div className="flex justify-center flex-col items-center">
+          <div className="flex justify-center flex-col items-center pt-16 md:pt-0">
             <div className="relative">
               <WhiteLogo width={350} height={250} />
               <p className="text-base absolute top-3/4 left-1/2 -translate-x-1/2 w-full text-center text-white">Always trying to make the difference</p>
