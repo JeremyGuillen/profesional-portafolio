@@ -1,10 +1,11 @@
 /* eslint-disable @next/next/no-img-element */
 import type { NextPage } from 'next';
+import Image from 'next/image';
+import { Button } from 'antd';
+import { DesktopOutlined, MobileOutlined, CloudServerOutlined, GithubOutlined, LinkedinOutlined } from '@ant-design/icons';
 import { Navbar } from '../components/navbar';
 import { WhiteLogo } from '../components';
 import { ServiceCard } from '../components/service-card';
-import { DesktopOutlined, MobileOutlined, CloudServerOutlined, GithubOutlined, LinkedinOutlined } from '@ant-design/icons';
-import { Button } from 'antd';
 
 const frontEndTools = ['Angular', 'React', 'Tailwind', 'SCSS', 'Motion'];
 const mobileDevelopmentTools = ['React Native', 'Flutter'];
@@ -32,7 +33,28 @@ const Home: NextPage = () => {
           </div>
         </section>
         {/* About me section */}
-        <section className="py-6 h-96 bg-white"></section>
+        <section className="pt-16 pb-40 bg-white">
+          <div className="flex items-center w-4/5 m-auto max-w-5xl">
+            <div className="flex-1 pr-7">
+              <div className="flex items-center">
+                <h4 className="text-xl m-0 pr-2 text-primary font-normal">About me</h4>
+                <div className="flex-1 h-[5px] rounded-3xl bg-primary pl-4"></div>
+              </div>
+              <div className="pt-2 pb-4 text-lg">
+                <p className="mb-0">Hello my name is Jeremy Guillen and I enjoy solving problems and delivering great web or mobile aplications.</p>
+                <p className="mb-0">My interest in programming started in 2015 when I coded a toy card that maked a turn each time it finds a wall. Fast forward to today. </p>
+                <p className="mb-0">Fast forward to the present, I&apos;m a person who loves to learn new techonologies, develop innovating apps and making the life of my clients easier with my creations and knowledge.</p>
+              </div>
+              <div className="flex-1 h-[5px] rounded-3xl bg-primary pl-4"></div>
+            </div>
+            <div className="flex-1 pl-7 relative">
+              <div className="overflow-hidden rounded-lg">
+                <img src="/me.JPG" alt="Beatiful picture of me" />
+              </div>
+              <div className="h-[268px] bg-transparent border-primary border-2 absolute w-3/4"></div>
+            </div>
+          </div>
+        </section>
 
         {/* Services section */}
         <section className="py-9 bg-primary px-4">
