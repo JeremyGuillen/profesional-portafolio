@@ -47,11 +47,10 @@ const Home: NextPage = () => {
               </div>
               <div className="flex-1 h-[5px] rounded-3xl bg-primary pl-4"></div>
             </div>
-            <div className="flex-1 pl-7 relative">
-              <div className="overflow-hidden rounded-lg">
+            <div className="flex-1 pl-7 z-20 flex justify-center">
+              <div className=" rounded-lg image-wrapper">
                 <img src="/me.JPG" alt="Beatiful picture of me" />
               </div>
-              <div className="h-[268px] bg-transparent border-primary border-2 absolute w-3/4"></div>
             </div>
           </div>
         </section>
