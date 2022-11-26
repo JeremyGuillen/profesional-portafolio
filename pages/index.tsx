@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import type { NextPage } from 'next';
-import Image from 'next/image';
+import { motion } from 'framer-motion';
 import { Button } from 'antd';
 import { DesktopOutlined, MobileOutlined, CloudServerOutlined, GithubOutlined, LinkedinOutlined } from '@ant-design/icons';
 import { Navbar } from '../components/navbar';
@@ -21,15 +21,17 @@ const Home: NextPage = () => {
       <main>
         <Navbar />
         <section className="bg-center bg-[url('/wave-background.svg')] h-screen bg-no-repeat bg-cover md:h-[80vh] relative px-11">
-          <div className="absolute top-1/3 -translate-y-1/2">
-            <h1 className="text-2xl md:text-4xl text-white tracking-wide">
-              Hello, my <br />
-              name is
-              <span className="font-medium"> Jeremy</span>
-            </h1>
-            <p className="pt-6 text-lg md:text-2xl text-white font-light">
-              I&apos;m a software engineer with <br /> passion for innovation
-            </p>
+          <div className="absolute top-1/3 -translate-y-1/2 mb-0">
+            <motion.div initial={{ opacity: 0, translateX: -400 }} animate={{ opacity: 1, translateX: 0 }} transition={{ delay: 0.2, duration: 1 }}>
+              <h1 className="text-2xl md:text-4xl text-white tracking-wide">
+                Hello, my <br />
+                name is
+                <span className="font-medium"> Jeremy</span>
+              </h1>
+              <p className="pt-2 text-lg md:text-2xl text-white font-light">
+                I&apos;m a software engineer with <br /> passion for innovation
+              </p>
+            </motion.div>
           </div>
         </section>
         {/* About me section */}
@@ -95,12 +97,12 @@ const Home: NextPage = () => {
               <p className="text-base absolute top-3/4 left-1/2 -translate-x-1/2 w-full text-center text-white">Always trying to make the difference</p>
             </div>
             <div className="flex text-lg w-28 justify-around">
-              <a onClick={() => onSocialLinkClicked('https://github.com/JeremyGuillen')}>
-                <GithubOutlined className="text-[30px]" style={{ color: 'white' }} />
-              </a>
-              <a onClick={() => onSocialLinkClicked('https://www.linkedin.com/in/jeremy-guill%C3%A9n-dur%C3%A1n-14223b230/')}>
-                <LinkedinOutlined className="text-[30px]" style={{ color: 'white' }} />
-              </a>
+              <motion.a className="text-white" onClick={() => onSocialLinkClicked('https://github.com/JeremyGuillen')} whileHover={{ translateY: -3, scale: 1.1 }}>
+                <GithubOutlined className="text-[30px]" style={{ color: '#fff' }} />
+              </motion.a>
+              <motion.a onClick={() => onSocialLinkClicked('https://www.linkedin.com/in/jeremy-guill%C3%A9n-dur%C3%A1n-14223b230/')} whileHover={{ translateY: -3, scale: 1.1 }}>
+                <LinkedinOutlined className="text-[30px]" style={{ color: '#fff' }} />
+              </motion.a>
             </div>
           </div>
         </section>
