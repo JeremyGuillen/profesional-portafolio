@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import type { NextPage } from 'next';
-import { motion } from 'framer-motion';
+import { useEffect, useRef } from 'react';
+import { motion, useAnimation, useInView, Variants } from 'framer-motion';
 import { Button } from 'antd';
 import { DesktopOutlined, MobileOutlined, CloudServerOutlined, GithubOutlined, LinkedinOutlined } from '@ant-design/icons';
 import { Navbar } from '../components/navbar';
@@ -11,10 +12,27 @@ const frontEndTools = ['Angular', 'React', 'Tailwind', 'SCSS', 'Motion'];
 const mobileDevelopmentTools = ['React Native', 'Flutter'];
 const fullstackDevelopmentToold = ['Angular', 'React', 'NodeJS', 'AWS'];
 
+const fadeInAnimation: Variants = {
+  hidden: {
+    opacity: 0,
+    translateX: -200,
+  },
+  visible: {
+    opacity: 1,
+    translateX: 0,
+  },
+};
+
 const Home: NextPage = () => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true });
   const onSocialLinkClicked = (url: string) => {
     window.open(url, '_blank');
   };
+
+  useEffect(() => {
+    console.log('Element is in view: ', isInView);
+  }, [isInView]);
 
   return (
     <div className="flex min-h-screen flex-col">
@@ -35,8 +53,14 @@ const Home: NextPage = () => {
           </div>
         </section>
         {/* About me section */}
-        <section className="pt-16 pb-40 bg-white">
-          <div className="flex items-center w-4/5 m-auto max-w-5xl">
+        <section className="pt-16 pb-40 bg-white" ref={ref}>
+          <motion.div
+            className="flex items-center w-4/5 m-auto max-w-5xl"
+            style={{
+              transform: isInView ? 'none' : 'translateX(-200)',
+              opacity: isInView ? 1 : 0,
+            }}
+          >
             <div className="flex-1 pr-7">
               <div className="flex items-center">
                 <h4 className="text-xl m-0 pr-2 text-primary font-normal">About me</h4>
@@ -54,7 +78,7 @@ const Home: NextPage = () => {
                 <img src="/me.JPG" alt="Beatiful picture of me" />
               </div>
             </div>
-          </div>
+          </motion.div>
         </section>
 
         {/* Services section */}
