@@ -130,7 +130,17 @@ const Home: NextPage = () => {
         </section>
 
         {/* Projects section */}
-        <section className="py-9 h-96 bg-white"></section>
+        <section className="py-9 h-96 bg-white">
+          <h3 className="text-center text-primary text-2xl pb-5">
+            <span className="relative after:transition-all after:-translate-x-1/2 after:content-[''] after:absolute after:bg-primary after:bottom-0 after:w-2/3 after:h-[2px] after:left-1/2">Projects</span>
+          </h3>
+          <div></div>
+          <div className="text-center">
+            <Button type="primary" shape="round">
+              Check my github!
+            </Button>
+          </div>
+        </section>
 
         {/* contact and footer section */}
         <section className="py-9 bg-primary relative">

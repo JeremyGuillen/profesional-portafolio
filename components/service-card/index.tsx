@@ -14,7 +14,7 @@ interface ServiceCardProps {
 
 export const ServiceCard: React.FC<ServiceCardProps> = ({ title, description, iconSrc, tools }) => {
   return (
-    <motion.div whileHover={{ scale: 1.03, translateY: -20 }} style={{ height: '100%', width: '100%' }}>
+    <motion.div style={{ height: '100%', width: '100%' }}>
       <Card style={{ width: '100%', borderRadius: 10, maxWidth: '400px', height: '100%' }} bodyStyle={{ height: '100%' }}>
         <div className="flex flex-col h-full">
           <div className="flex justify-center">
