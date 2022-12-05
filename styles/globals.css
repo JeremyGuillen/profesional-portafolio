@@ -81,3 +81,12 @@
 .project-container:hover .project-overlay {
   opacity: 1;
 }
+
+.ant-menu-light .ant-menu-item {
+  transition: all 0.3s;
+} 
+
+.ant-menu-light .ant-menu-item:not(.ant-menu-item-selected):hover {
+  color: white !important;
+  transform: scale(1.1);
+}

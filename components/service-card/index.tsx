@@ -10,9 +10,10 @@ interface ServiceCardProps {
   description: string;
   iconSrc: ReactNode;
   tools: string[];
+  onContactClick: () => void;
 }
 
-export const ServiceCard: React.FC<ServiceCardProps> = ({ title, description, iconSrc, tools }) => {
+export const ServiceCard: React.FC<ServiceCardProps> = ({ title, description, iconSrc, tools, onContactClick }) => {
   return (
     <motion.div style={{ height: '100%', width: '100%' }}>
       <Card style={{ width: '100%', borderRadius: 10, maxWidth: '400px', height: '100%' }} bodyStyle={{ height: '100%' }}>
@@ -35,7 +36,7 @@ export const ServiceCard: React.FC<ServiceCardProps> = ({ title, description, ic
             )}
           />
           <div className="text-center mt-auto">
-            <Button type="primary" shape="round" style={{ backgroundColor: '#4EADFE', borderColor: '#4EADFE' }}>
+            <Button type="primary" shape="round" style={{ backgroundColor: '#4EADFE', borderColor: '#4EADFE' }} onClick={onContactClick}>
               Contact me
             </Button>
           </div>
