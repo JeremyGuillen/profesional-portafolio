@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import type { NextPage } from 'next';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import { motion, useAnimationControls, useInView, Variants } from 'framer-motion';
 import { Button } from 'antd';
@@ -11,6 +11,7 @@ import { WhiteLogo } from '../components';
 import { ServiceCard } from '../components/service-card';
 import developerImage from '../public/developer_image.svg';
 import { Project } from '../types/types';
+import { ContactMe } from '../components/contact-me';
 
 const frontEndTools = ['Angular', 'React', 'Tailwind', 'SCSS', 'Motion'];
 const mobileDevelopmentTools = ['React Native', 'Flutter'];
@@ -60,6 +61,7 @@ const Home: NextPage = () => {
   const areServicesInView = useInView(servicesRef, { once: true, amount: 0.5 });
   const controls = useAnimationControls();
   const itemsControls = useAnimationControls();
+  const [openModal, setOpenModal] = useState<boolean>(false);
   const onSocialLinkClicked = (url: string) => {
     window.open(url, '_blank');
   };
@@ -78,13 +80,20 @@ const Home: NextPage = () => {
   }, [areServicesInView]);
 
   useEffect(() => {
-    console.log('Element is in view: ', isInView);
     if (isInView) {
       controls.start('visible');
     } else {
       controls.start('hidden');
     }
   }, [isInView, controls]);
+
+  const openContactMeModal = () => {
+    setOpenModal(true);
+  };
+
+  const closeContactMeModal = () => {
+    setOpenModal(false);
+  };
 
   return (
     <div className="flex min-h-screen flex-col">
@@ -176,7 +185,7 @@ const Home: NextPage = () => {
               Wanna work together? <br /> We should chat
             </p>
             {/* todo fix this button color */}
-            <Button className="flex-1" type="primary" shape="round">
+            <Button className="flex-1" type="primary" shape="round" onClick={openContactMeModal}>
               Send message
             </Button>
           </div>
@@ -195,6 +204,7 @@ const Home: NextPage = () => {
             </div>
           </div>
         </section>
+        <ContactMe open={openModal} onCancel={closeContactMeModal} />
       </main>
     </div>
   );
