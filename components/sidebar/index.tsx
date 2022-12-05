@@ -1,5 +1,6 @@
 import React from 'react';
 import { Layout, SiderProps, Menu } from 'antd';
+import { MenuProps } from 'rc-menu';
 
 const { Sider } = Layout;
 const menuItems = [
@@ -25,10 +26,19 @@ const menuItems = [
   },
 ];
 
-interface Props extends SiderProps {}
-export const Sidebar: React.FC<Props> = ({ collapsed }) => {
+interface Props extends SiderProps {
+  onClickElement: (key: string) => void;
+  onBreak: (broken: boolean) => void;
+}
+export const Sidebar: React.FC<Props> = ({ collapsed, onClickElement, onBreak }) => {
+  const onMenuClick: MenuProps['onClick'] = (e) => {
+    onClickElement(e.key);
+  };
+
   return (
     <Sider
+      breakpoint="md"
+      onBreakpoint={onBreak}
       collapsedWidth={0}
       reverseArrow={true}
       defaultCollapsed={true}
@@ -44,7 +54,7 @@ export const Sidebar: React.FC<Props> = ({ collapsed }) => {
       }}
       theme="light"
     >
-      <Menu mode="inline" items={menuItems} style={{ borderColor: '#0871E0' }} />
+      <Menu mode="inline" items={menuItems} style={{ borderColor: '#0871E0' }} onClick={onMenuClick} />
     </Sider>
   );
 };

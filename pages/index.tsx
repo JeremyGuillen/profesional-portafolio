@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import type { NextPage } from 'next';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, MutableRefObject } from 'react';
 import Image from 'next/image';
 import { motion, useAnimationControls, useInView, Variants } from 'framer-motion';
 import { Button, Layout } from 'antd';
@@ -9,15 +9,15 @@ import { Navbar } from '../components/navbar';
 import { ProjectImage } from '../components/project';
 import { WhiteLogo } from '../components';
 import { ServiceCard } from '../components/service-card';
-import developerImage from '../public/developer_image.svg';
 import { Project } from '../types/types';
 import { ContactMe } from '../components/contact-me';
 import { Sidebar } from '../components/sidebar';
+import developerImage from '../public/developer_image.svg';
 
 const frontEndTools = ['Angular', 'React', 'Tailwind', 'SCSS', 'Motion'];
 const mobileDevelopmentTools = ['React Native', 'Flutter'];
 const fullstackDevelopmentToold = ['Angular', 'React', 'NodeJS', 'AWS'];
-const { Header, Sider, Content } = Layout;
+const { Header, Content } = Layout;
 const projects: Project[] = [
   {
     name: 'Twitter clone',
@@ -57,10 +57,14 @@ const cardsInAnimation: Variants = {
 };
 
 const Home: NextPage = () => {
-  const ref = useRef(null);
-  const servicesRef = useRef(null);
-  const isInView = useInView(ref, { once: true, amount: 0.5 });
-  const areServicesInView = useInView(servicesRef, { once: true, amount: 0.5 });
+  const aboutMeRef = useRef<HTMLDivElement>(null);
+  const homeRef = useRef<HTMLDivElement>(null);
+  const projectsRef = useRef<HTMLDivElement>(null);
+  const contactRef = useRef<HTMLDivElement>(null);
+  const servicesCardsRef = useRef<HTMLDivElement>(null);
+  const servicesRef = useRef<HTMLDivElement>(null);
+  const isInView = useInView(aboutMeRef, { once: true, amount: 0.5 });
+  const areServicesInView = useInView(servicesCardsRef, { once: true, amount: 0 });
   const controls = useAnimationControls();
   const itemsControls = useAnimationControls();
   const [openModal, setOpenModal] = useState<boolean>(false);
@@ -74,6 +78,34 @@ const Home: NextPage = () => {
       itemsControls.start((i) => ({ ...cardsInAnimation.visible, transition: { duration: 1, delay: i * 0.2 } }));
     } else {
       itemsControls.start(cardsInAnimation.hidden);
+    }
+  };
+
+  const scrollIntoView = (key: string) => {
+    let ref: MutableRefObject<HTMLDivElement | null>;
+    switch (key) {
+      case 'home':
+        ref = homeRef;
+        break;
+      case 'about':
+        ref = aboutMeRef;
+        break;
+      case 'services':
+        ref = servicesRef;
+        break;
+      case 'projects':
+        ref = projectsRef;
+        break;
+      case 'contact':
+        ref = contactRef;
+        break;
+      default:
+        console.error(`Invalid key type: ${key}`);
+        ref = homeRef;
+        break;
+    }
+    if (ref.current) {
+      ref.current.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'center' });
     }
   };
 
@@ -102,17 +134,23 @@ const Home: NextPage = () => {
     setSiderCollapsed(!siderCollapsed);
   };
 
+  const onBreakSider = (broken: boolean) => {
+    if (!broken && !siderCollapsed) {
+      toggleSider();
+    }
+  };
+
   return (
     <Layout>
-      <Header>
-        <Navbar onToggleSidebar={toggleSider} />
+      <Header style={{ position: 'fixed', width: '100vw', top: 0, left: 0, zIndex: 100 }}>
+        <Navbar onClickElement={scrollIntoView} onToggleSidebar={toggleSider} />
       </Header>
       <Layout>
-        <Sidebar collapsed={siderCollapsed} />
+        <Sidebar onClickElement={scrollIntoView} collapsed={siderCollapsed} onBreak={onBreakSider} />
         <Content>
-          <div className="flex min-h-screen flex-col">
+          <div className="flex min-h-screen flex-col pt-32">
             <main>
-              <section className="h-[80vh] bg-center bg-[url('/wave-background.svg')] bg-no-repeat bg-cover md:h-[80vh] relative px-11">
+              <section ref={homeRef} className="h-[80vh] bg-center bg-[url('/wave-background.svg')] bg-no-repeat bg-cover md:h-[80vh] relative px-11">
                 <div className="absolute top-1/3 -translate-y-1/2 mb-0">
                   <motion.div initial={{ opacity: 0, translateX: -400 }} animate={{ opacity: 1, translateX: 0 }} transition={{ delay: 0.2, duration: 1 }}>
                     <h1 className="text-3xl md:text-5xl text-white tracking-wide">
@@ -130,7 +168,7 @@ const Home: NextPage = () => {
                 </div>
               </section>
               {/* About me section */}
-              <section className="pb-20 pt-16 md:pb-40 bg-white" ref={ref}>
+              <section className="pb-20 pt-16 md:pb-40 bg-white" ref={aboutMeRef}>
                 <motion.div animate={controls} variants={fadeInAnimation} className="flex items-center w-4/5 m-auto max-w-5xl flex-wrap">
                   <div className="flex-1 pr-7 pb-4 md:pb-0">
                     <div className="flex items-center">
@@ -153,11 +191,11 @@ const Home: NextPage = () => {
               </section>
 
               {/* Services section */}
-              <section className="py-9 bg-primary px-4">
+              <section ref={servicesRef} className="py-9 bg-primary px-4">
                 <h3 className="text-center text-white text-2xl pb-5">
                   <span className="relative after:transition-all after:-translate-x-1/2 after:content-[''] after:absolute after:bg-white after:bottom-0 after:w-2/3 after:h-[2px] after:left-1/2">Services</span>
                 </h3>
-                <div ref={servicesRef} className="flex justify-center flex-wrap">
+                <div ref={servicesCardsRef} className="flex justify-center flex-wrap">
                   <motion.div custom={1} animate={itemsControls} className="flex-1 px-4 max-w-[400px] h-[500px] min-w-[377px] pt-3">
                     <ServiceCard onContactClick={openContactMeModal} title="Front end development" iconSrc={<DesktopOutlined />} description="I'll bring your ideas and designs to life and deliver you a clean and scalable project." tools={frontEndTools} />
                   </motion.div>
@@ -171,7 +209,7 @@ const Home: NextPage = () => {
               </section>
 
               {/* Projects section */}
-              <section className="pt-20 pb-48 md:pb-40 px-20 bg-white">
+              <section ref={projectsRef} className="pt-20 pb-48 md:pb-40 px-20 bg-white">
                 <h3 className="text-center text-primary text-2xl pb-5">
                   <span className="relative after:transition-all after:-translate-x-1/2 after:content-[''] after:absolute after:bg-primary after:bottom-0 after:w-2/3 after:h-[2px] after:left-1/2">Projects</span>
                 </h3>
@@ -190,7 +228,7 @@ const Home: NextPage = () => {
               </section>
 
               {/* contact and footer section */}
-              <section className="py-9 bg-primary relative">
+              <section ref={contactRef} className="py-9 bg-primary relative">
                 {/* contact div */}
                 <div className="w-3/4 max-w-[1029px] py-6 px-11 absolute top-0 left-1/2 -translate-x-1/2 space-x-2 -translate-y-1/2 text-white text-xl flex-col bg-secondary rounded-xl md:flex-row flex justify-around items-center flex-wrap">
                   <h5 className="text-white flex-1 text-bold m-7 md:m-0 text-center md:text-left">Let&apos;s build something</h5>
