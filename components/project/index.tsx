@@ -1,11 +1,26 @@
+import { Button } from 'antd';
 import React from 'react';
+import { Project } from '../../types/types';
 
 interface ProjectImageProps {
-  name: string;
-  img: string;
-  description: string;
+  project: Project;
 }
 
-export const ProjectImage: React.FC<ProjectImageProps> = () => {
-  return <div>Project image works</div>;
+export const ProjectImage: React.FC<ProjectImageProps> = ({ project: { name, img, description } }) => {
+  return (
+    <div className="w-full rounded-md overflow-hidden">
+      <div className="relative project-container shadow-lg">
+        <img src={img} className="project-image" />
+        <div className="project-overlay">
+          <h3 className="text-white text-center text-lg">{name}</h3>
+          <p className="text-white text-center">{description}</p>
+          <div className="mt-auto">
+            <Button shape="round" type="primary">
+              Check it on github
+            </Button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 };

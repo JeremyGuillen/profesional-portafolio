@@ -1,16 +1,32 @@
 /* eslint-disable @next/next/no-img-element */
 import type { NextPage } from 'next';
 import { useEffect, useRef } from 'react';
+import Image from 'next/image';
 import { motion, useAnimationControls, useInView, Variants } from 'framer-motion';
 import { Button } from 'antd';
 import { DesktopOutlined, MobileOutlined, CloudServerOutlined, GithubOutlined, LinkedinOutlined } from '@ant-design/icons';
 import { Navbar } from '../components/navbar';
+import { ProjectImage } from '../components/project';
 import { WhiteLogo } from '../components';
 import { ServiceCard } from '../components/service-card';
+import developerImage from '../public/developer_image.svg';
+import { Project } from '../types/types';
 
 const frontEndTools = ['Angular', 'React', 'Tailwind', 'SCSS', 'Motion'];
 const mobileDevelopmentTools = ['React Native', 'Flutter'];
 const fullstackDevelopmentToold = ['Angular', 'React', 'NodeJS', 'AWS'];
+const projects: Project[] = [
+  {
+    name: 'Twitter clone',
+    description: 'A twitter clone made with Nextjs, Tailwind and Sanity.',
+    img: 'https://developer-portafolio-images.s3.amazonaws.com/Screen+Shot+2022-12-04+at+14.20.53.png',
+  },
+  {
+    name: 'Twitter clone',
+    description: 'A twitter clone made with Nextjs, Tailwind and Sanity.',
+    img: 'https://developer-portafolio-images.s3.amazonaws.com/Screen+Shot+2022-12-04+at+14.20.53.png',
+  },
+];
 
 const fadeInAnimation: Variants = {
   hidden: {
@@ -74,24 +90,27 @@ const Home: NextPage = () => {
     <div className="flex min-h-screen flex-col">
       <main>
         <Navbar />
-        <section className="bg-center bg-[url('/wave-background.svg')] h-screen bg-no-repeat bg-cover md:h-[80vh] relative px-11">
+        <section className="h-[80vh] bg-center bg-[url('/wave-background.svg')] md:h-screen bg-no-repeat bg-cover md:h-[80vh] relative px-11">
           <div className="absolute top-1/3 -translate-y-1/2 mb-0">
             <motion.div initial={{ opacity: 0, translateX: -400 }} animate={{ opacity: 1, translateX: 0 }} transition={{ delay: 0.2, duration: 1 }}>
-              <h1 className="text-2xl md:text-4xl text-white tracking-wide">
+              <h1 className="text-3xl md:text-5xl text-white tracking-wide">
                 Hello, my <br />
                 name is
                 <span className="font-medium"> Jeremy</span>
               </h1>
-              <p className="pt-2 text-lg md:text-2xl text-white font-light">
+              <p className="pt-2 text-lg md:text-4xl text-white font-light">
                 I&apos;m a software engineer with <br /> passion for innovation
               </p>
             </motion.div>
           </div>
+          <div className="absolute top-1/3 -translate-y-1/2 mb-0 right-[20%]">
+            <Image src={developerImage} width="400" height="200" alt="developer image" />
+          </div>
         </section>
         {/* About me section */}
-        <section className="pt-16 pb-40 bg-white" ref={ref}>
-          <motion.div animate={controls} variants={fadeInAnimation} className="flex items-center w-4/5 m-auto max-w-5xl">
-            <div className="flex-1 pr-7">
+        <section className="pb-20 pt-16 md:pb-40 bg-white" ref={ref}>
+          <motion.div animate={controls} variants={fadeInAnimation} className="flex items-center w-4/5 m-auto max-w-5xl flex-wrap">
+            <div className="flex-1 pr-7 pb-4 md:pb-0">
               <div className="flex items-center">
                 <h4 className="text-xl m-0 pr-2 text-primary font-normal">About me</h4>
                 <div className="flex-1 h-[5px] rounded-3xl bg-primary pl-4"></div>
@@ -103,7 +122,7 @@ const Home: NextPage = () => {
               </div>
               <div className="flex-1 h-[5px] rounded-3xl bg-primary pl-4"></div>
             </div>
-            <div className="flex-1 pl-7 z-20 flex justify-center">
+            <div className="pt-4 flex-1 pl-7 z-20 flex justify-center md:pt-0">
               <div className=" rounded-lg image-wrapper">
                 <img src="/me.JPG" alt="Beatiful picture of me" />
               </div>
@@ -130,11 +149,17 @@ const Home: NextPage = () => {
         </section>
 
         {/* Projects section */}
-        <section className="py-9 h-96 bg-white">
+        <section className="pt-20 pb-40 px-20 bg-white">
           <h3 className="text-center text-primary text-2xl pb-5">
             <span className="relative after:transition-all after:-translate-x-1/2 after:content-[''] after:absolute after:bg-primary after:bottom-0 after:w-2/3 after:h-[2px] after:left-1/2">Projects</span>
           </h3>
-          <div></div>
+          <div className="flex pt-10 pb-10 gap-8 flex-wrap justify-center">
+            {projects.map((project, index) => (
+              <div key={index} className="flex-1 w-full md:w-1/2 lg:w-1/3 max-w-md min-w-[400px]">
+                <ProjectImage project={project} />
+              </div>
+            ))}
+          </div>
           <div className="text-center">
             <Button type="primary" shape="round">
               Check my github!
