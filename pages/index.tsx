@@ -65,7 +65,7 @@ const Home: NextPage = () => {
   const itemsControls = useAnimationControls();
   const [openModal, setOpenModal] = useState<boolean>(false);
   const [siderCollapsed, setSiderCollapsed] = useState<boolean>(true);
-  const onSocialLinkClicked = (url: string) => {
+  const openLink = (url: string) => {
     window.open(url, '_blank');
   };
 
@@ -217,7 +217,7 @@ const Home: NextPage = () => {
                   ))}
                 </div>
                 <div className="text-center">
-                  <Button type="primary" shape="round">
+                  <Button type="primary" shape="round" onClick={() => openLink('https://github.com/JeremyGuillen')}>
                     Revisa mi github
                   </Button>
                 </div>
@@ -241,10 +241,10 @@ const Home: NextPage = () => {
                     <p className="text-base absolute top-3/4 left-1/2 -translate-x-1/2 w-full text-center text-white">Siempre intentando hacer la diferencia</p>
                   </div>
                   <div className="flex text-lg w-28 justify-around">
-                    <motion.a className="text-white" onClick={() => onSocialLinkClicked('https://github.com/JeremyGuillen')} whileHover={{ translateY: -3, scale: 1.1 }}>
+                    <motion.a className="text-white" onClick={() => openLink('https://github.com/JeremyGuillen')} whileHover={{ translateY: -3, scale: 1.1 }}>
                       <GithubOutlined className="text-[30px]" style={{ color: '#fff' }} />
                     </motion.a>
-                    <motion.a onClick={() => onSocialLinkClicked('https://www.linkedin.com/in/jeremy-guill%C3%A9n-dur%C3%A1n-14223b230/')} whileHover={{ translateY: -3, scale: 1.1 }}>
+                    <motion.a onClick={() => openLink('https://www.linkedin.com/in/jeremy-guill%C3%A9n-dur%C3%A1n-14223b230/')} whileHover={{ translateY: -3, scale: 1.1 }}>
                       <LinkedinOutlined className="text-[30px]" style={{ color: '#fff' }} />
                     </motion.a>
                   </div>
