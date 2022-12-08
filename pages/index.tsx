@@ -149,8 +149,7 @@ const Home: NextPage = () => {
                 <div className="absolute top-1/3 -translate-y-1/2 mb-0">
                   <motion.div initial={{ opacity: 0, translateX: -400 }} animate={{ opacity: 1, translateX: 0 }} transition={{ delay: 0.2, duration: 1 }}>
                     <h1 className="text-3xl md:text-5xl text-white tracking-wide">
-                      Hola, mi <br />
-                      soy
+                      Hola soy <br />
                       <span className="font-medium"> Jeremy</span>
                     </h1>
                     <p className="pt-2 text-lg md:text-4xl text-white font-light">
