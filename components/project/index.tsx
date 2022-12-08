@@ -16,7 +16,7 @@ export const ProjectImage: React.FC<ProjectImageProps> = ({ project: { name, img
           <p className="text-white text-center">{description}</p>
           <div className="mt-auto">
             <Button shape="round" type="primary">
-              Check it on github
+              Míralo en github
             </Button>
           </div>
         </div>

@@ -25,7 +25,7 @@ export const ServiceCard: React.FC<ServiceCardProps> = ({ title, description, ic
           </div>
           <h3 className="pt-3 text-center text-secondary font-medium text-lg">{title}</h3>
           <p className="text-center mb-7 text-base">{description}</p>
-          <h5 className="text-secondary text-center mb-2">Tools</h5>
+          <h5 className="text-secondary text-center mb-2">Herramientas</h5>
           <List
             dataSource={tools}
             className="h-32 mb-4"
@@ -37,7 +37,7 @@ export const ServiceCard: React.FC<ServiceCardProps> = ({ title, description, ic
           />
           <div className="text-center mt-auto">
             <Button type="primary" shape="round" style={{ backgroundColor: '#4EADFE', borderColor: '#4EADFE' }} onClick={onContactClick}>
-              Contact me
+              Contactame
             </Button>
           </div>
         </div>

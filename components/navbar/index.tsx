@@ -18,19 +18,19 @@ export const Navbar: React.FC<NavbarProps> = ({ onToggleSidebar, onClickElement 
       </div>
       <ul className="hidden md:flex list-none flex-grow items-center justify-end text-white">
         <li className="px-2 cursor-pointer" onClick={() => onClickElement('home')}>
-          <a className="text-lg relative after:absolute after:content-[''] after:transition-all after:-translate-x-1/2 text-white hover:text-white after:bg-white after:w-0 after:h-0 after:left-1/2 hover:after:h-px hover:after:w-3/4 after:-bottom-1">Home</a>
+          <a className="text-lg relative after:absolute after:content-[''] after:transition-all after:-translate-x-1/2 text-white hover:text-white after:bg-white after:w-0 after:h-0 after:left-1/2 hover:after:h-px hover:after:w-3/4 after:-bottom-1">Inicio</a>
         </li>
         <li className="px-2 cursor-pointer" onClick={() => onClickElement('about')}>
-          <a className="text-lg relative after:absolute after:content-[''] after:transition-all after:-translate-x-1/2 text-white hover:text-white after:bg-white after:w-0 after:h-0 after:left-1/2 hover:after:h-px hover:after:w-3/4 after:-bottom-1">About</a>
+          <a className="text-lg relative after:absolute after:content-[''] after:transition-all after:-translate-x-1/2 text-white hover:text-white after:bg-white after:w-0 after:h-0 after:left-1/2 hover:after:h-px hover:after:w-3/4 after:-bottom-1">Sobre mi</a>
         </li>
         <li className="px-2 cursor-pointer" onClick={() => onClickElement('services')}>
-          <a className=" text-lg relative after:absolute after:content-[''] after:transition-all after:-translate-x-1/2 text-white hover:text-white after:bg-white after:w-0 after:h-0 after:left-1/2 hover:after:h-px hover:after:w-3/4 after:-bottom-1">Services</a>
+          <a className=" text-lg relative after:absolute after:content-[''] after:transition-all after:-translate-x-1/2 text-white hover:text-white after:bg-white after:w-0 after:h-0 after:left-1/2 hover:after:h-px hover:after:w-3/4 after:-bottom-1">Servicios</a>
         </li>
         <li className="px-2 cursor-pointer" onClick={() => onClickElement('projects')}>
-          <a className="text-lg relative after:absolute after:content-[''] after:transition-all after:-translate-x-1/2 text-white hover:text-white after:bg-white after:w-0 after:h-0 after:left-1/2 hover:after:h-px hover:after:w-3/4 after:-bottom-1">Projects</a>
+          <a className="text-lg relative after:absolute after:content-[''] after:transition-all after:-translate-x-1/2 text-white hover:text-white after:bg-white after:w-0 after:h-0 after:left-1/2 hover:after:h-px hover:after:w-3/4 after:-bottom-1">Proyectos</a>
         </li>
         <li className="px-2 cursor-pointer" onClick={() => onClickElement('contact')}>
-          <a className="text-lg relative after:absolute after:content-[''] after:transition-all after:-translate-x-1/2 text-white hover:text-white after:bg-white after:w-0 after:h-0 after:left-1/2 hover:after:h-px hover:after:w-3/4 after:-bottom-1">Contact</a>
+          <a className="text-lg relative after:absolute after:content-[''] after:transition-all after:-translate-x-1/2 text-white hover:text-white after:bg-white after:w-0 after:h-0 after:left-1/2 hover:after:h-px hover:after:w-3/4 after:-bottom-1">Contacto</a>
         </li>
       </ul>
     </div>
