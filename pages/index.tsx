@@ -23,6 +23,7 @@ const projects: Project[] = [
     name: 'Clon de twitter',
     description: 'Un clon de twitter hecho con Nextjs, Tailwind y Sanity',
     img: 'https://developer-portafolio-images.s3.amazonaws.com/Screen+Shot+2022-12-04+at+14.20.53.png',
+    repository: 'https://github.com/JeremyGuillen/twitter-clone-nextjs',
   },
 ];
 

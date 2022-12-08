@@ -17,9 +17,9 @@ export const ContactMe: React.FC<Props> = ({ open, onCancel }) => {
     setLoading(true);
     const response = await sendEmail(mail);
     if (response && response.status === 200) {
-      notification.success({ message: 'Your email has been sent. I will contact you once i read it!', duration: 2 });
+      notification.success({ message: 'Su email ha sdo enviado, me pondré en contacto con usted una vez lo lea!', duration: 2 });
     } else {
-      notification.error({ message: 'An unexpected error occurred. Please contact me to this email: guillenjeremy26@gmail.com', duration: 0 });
+      notification.error({ message: 'Ocurrio un error inesperado, por favor contacteme a este correo', duration: 0 });
     }
     setLoading(false);
     onCancelClick(undefined);
@@ -29,28 +29,28 @@ export const ContactMe: React.FC<Props> = ({ open, onCancel }) => {
       <h2 className="text-center mb-5 text-primary text-xl">Contact Me</h2>
       <Form form={form} layout="vertical" onFinish={onSubmit}>
         <Form.Item
-          label="From"
+          label="Su correo"
           name="from_name"
           rules={[
-            { required: true, message: 'From is required' },
-            { type: 'email', message: 'From should be a valid email' },
+            { required: true, message: 'El correo es requerido' },
+            { type: 'email', message: 'El correo ingresado no es valido' },
           ]}
         >
           <Input placeholder="example@gmail.com" className="border-input" />
         </Form.Item>
-        <Form.Item name="subject" label="Subject" rules={[{ required: true, message: 'Subject is required' }]}>
-          <Input placeholder="A cool idea I have in mind" className="border-input" />
+        <Form.Item name="subject" label="Tema" rules={[{ required: true, message: 'El tema es requerido' }]}>
+          <Input placeholder="Una idea que tengo en mente" className="border-input" />
         </Form.Item>
-        <Form.Item name="message" label="Body" rules={[{ required: true, message: 'Email boyd is required' }]}>
-          <Input.TextArea placeholder="My cool idea description" className="border-input" />
+        <Form.Item name="message" label="Mensaje" rules={[{ required: true, message: 'El mensaje es requerido' }]}>
+          <Input.TextArea placeholder="La descripción de mi idea" className="border-input" />
         </Form.Item>
         <div className="flex justify-around">
           <Button shape="round" type="default" onClick={onCancelClick}>
-            Cancel
+            Cancelar
           </Button>
           <Form.Item noStyle>
             <Button htmlType="submit" type="primary" shape="round" loading={loading}>
-              Send email
+              Enviar correo
             </Button>
           </Form.Item>
         </div>
