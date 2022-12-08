@@ -5,23 +5,23 @@ import { MenuProps } from 'rc-menu';
 const { Sider } = Layout;
 const menuItems = [
   {
-    label: 'Home',
+    label: 'Inicio',
     key: 'home',
   },
   {
-    label: 'About',
+    label: 'Sobre mi',
     key: 'about',
   },
   {
-    label: 'Services',
+    label: 'Servicios',
     key: 'services',
   },
   {
-    label: 'Projects',
+    label: 'Proyectos',
     key: 'projects',
   },
   {
-    label: 'Contact',
+    label: 'Contacto',
     key: 'contact',
   },
 ];
